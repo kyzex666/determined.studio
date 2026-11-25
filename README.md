@@ -1,59 +1,269 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Determined Studio — Sistem Manajemen Produksi dan Gudang
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web berbasis Laravel untuk mengelola bahan baku, vendor, barang jadi, permintaan material, perintah produksi, pencatatan hasil produksi, stok, serta laporan operasional. Akses dibedakan untuk tiga peran: **Admin**, **Gudang**, dan **Produksi**.
 
-## About Laravel
+## Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Administrator
+- Dashboard ringkasan operasional.
+- Manajemen vendor, material, produk, dan pengguna.
+- Manajemen stok masuk dan keluar material.
+- Pencatatan barang jadi yang diterima gudang.
+- Manajemen perintah produksi dan status produksi.
+- Pengaturan resep/BOM produk.
+- Laporan stok, produksi, dan transaksi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Gudang
+- Dashboard gudang.
+- Mencatat pembelian/penerimaan bahan baku.
+- Mengeluarkan material untuk produksi.
+- Menerima hasil produksi dan menambah stok barang jadi.
+- Memproses atau menolak permintaan material dari produksi.
+- Memantau stok rendah dan riwayat transaksi.
+- Mencetak bukti penerimaan atau hasil produksi.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Produksi
+- Dashboard progres produksi.
+- Membuat dan memantau perintah produksi.
+- Mengajukan permintaan material.
+- Membatalkan atau menyelesaikan pekerjaan produksi.
+- Mencatat hasil produksi.
+- Melihat laporan progres, efisiensi, dan produksi harian.
 
-## Learning Laravel
+## Teknologi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP 8.2+
+- Laravel 12
+- Livewire 3 dan Volt
+- Laravel Breeze
+- Tailwind CSS
+- Alpine.js
+- Vite
+- Pest untuk pengujian
+- Database SQLite atau MySQL/MariaDB
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Persyaratan
 
-## Laravel Sponsors
+- PHP 8.2 atau lebih baru
+- Composer
+- Node.js dan npm
+- Laragon, XAMPP, atau server PHP lokal lain
+- Ekstensi PHP umum untuk Laravel (misalnya `pdo`, `mbstring`, `openssl`, dan ekstensi PDO database)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Instalasi di Laragon (Windows)
 
-### Premium Partners
+1. Clone atau buka project di folder Laragon:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+   ```powershell
+   cd C:\laragon\www
+   git clone <URL_REPOSITORY> determined.studio
+   cd determined.studio
+   ```
 
-## Contributing
+2. Buat file konfigurasi lingkungan:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```powershell
+   copy .env.example .env
+   ```
 
-## Code of Conduct
+3. Pasang dependensi PHP dan JavaScript:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```powershell
+   composer install
+   npm install
+   ```
 
-## Security Vulnerabilities
+4. Generate application key:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```powershell
+   php artisan key:generate
+   ```
 
-## License
+5. Siapkan database dan jalankan migrasi:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```powershell
+   php artisan migrate
+   ```
+
+6. Jalankan seeder agar tersedia akun demonstrasi dan data awal:
+
+   ```powershell
+   php artisan db:seed
+   ```
+
+7. Jalankan aplikasi:
+
+   ```powershell
+   composer run dev
+   ```
+
+   Akses aplikasi melalui `http://localhost/determined.studio` atau URL virtual host Laragon.
+
+Untuk setup otomatis bawaan project, gunakan:
+
+```powershell
+composer run setup
+```
+
+## Konfigurasi Database
+
+Konfigurasi default `.env.example` menggunakan SQLite. Pastikan file SQLite tersedia:
+
+```powershell
+New-Item database\database.sqlite -ItemType File -Force
+```
+
+Kemudian atur `.env`:
+
+```dotenv
+DB_CONNECTION=sqlite
+SESSION_DRIVER=database
+QUEUE_CONNECTION=database
+CACHE_STORE=database
+```
+
+Untuk menggunakan MySQL/MariaDB:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=determined_studio
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Setelah mengubah konfigurasi, bersihkan cache:
+
+```powershell
+php artisan optimize:clear
+```
+
+## Akun Demonstrasi
+
+Akun berikut dibuat oleh `DatabaseSeeder`:
+
+| Peran | Email | Password |
+|---|---|---|
+| Admin | `admin@determinedstudio.com` | `password123` |
+| Gudang | `gudang@determinedstudio.com` | `password123` |
+| Produksi | `produksi@determinedstudio.com` | `password123` |
+
+> Ganti password akun demonstrasi sebelum aplikasi digunakan dalam lingkungan produksi.
+
+## Alur Operasional
+
+1. Admin membuat data vendor, material, produk, resep/BOM, dan perintah produksi.
+2. Gudang mencatat penerimaan material dan memantau stok.
+3. Produksi membuat permintaan material untuk perintah produksi.
+4. Gudang memproses permintaan dan mengeluarkan material sesuai kebutuhan.
+5. Produksi mengerjakan dan menyelesaikan perintah produksi.
+6. Gudang mencatat barang jadi yang masuk ke gudang.
+7. Admin dan pengguna terkait dapat melihat laporan stok dan produksi.
+
+## Struktur Direktori
+
+```text
+app/
+├── Http/
+│   ├── Controllers/       # Controller per area Admin, Gudang, dan Produksi
+│   └── Middleware/        # Otentikasi dan pembatasan peran
+├── Livewire/              # Komponen/form Livewire
+├── Models/                # Model Eloquent dan relasi data
+resources/views/           # Blade template dan komponen UI
+routes/web.php             # Route aplikasi
+routes/auth.php            # Route autentikasi Breeze
+database/migrations/       # Struktur database
+database/seeders/          # Data awal dan akun demonstrasi
+public/build/              # Asset hasil build Vite
+tests/                     # Pengujian Pest
+```
+
+## Peran dan Akses
+
+Pembatasan rute menggunakan middleware `role` pada `routes/web.php`:
+
+- `/admin/*` — hanya `admin`
+- `/gudang/*` — `gudang` dan `admin`
+- `/produksi/*` — `produksi` dan `admin`
+
+Akun tidak berwenang akan menerima respons HTTP `403`.
+
+## Perintah Pengembangan
+
+Menjalankan server Laravel, queue listener, log viewer, dan Vite sekaligus:
+
+```powershell
+composer run dev
+```
+
+Menjalankan pengujian:
+
+```powershell
+composer run test
+```
+
+Menjalankan build frontend untuk produksi:
+
+```powershell
+npm run build
+```
+
+Format kode PHP dengan Pint:
+
+```powershell
+vendor\bin\pint
+```
+
+## Pengujian
+
+Project menggunakan Pest Framework:
+
+```powershell
+php artisan test
+```
+
+Tambahkan pengujian fitur pada `tests/Feature/` dan pengujian unit pada `tests/Unit/`.
+
+## Pemecahan Masalah
+
+**Halaman kosong atau konfigurasi lama**
+
+```powershell
+php artisan optimize:clear
+php artisan view:clear
+php artisan route:clear
+```
+
+**Aset frontend tidak berubah**
+
+```powershell
+npm run dev
+```
+
+Atau untuk hasil final:
+
+```powershell
+npm run build
+```
+
+**Gagal migrasi**
+
+Periksa konfigurasi database pada `.env`, lalu jalankan:
+
+```powershell
+php artisan migrate:status
+php artisan migrate
+```
+
+Untuk membuat ulang database lokal beserta data awal:
+
+```powershell
+php artisan migrate:fresh --seed
+```
+
+> Perintah `migrate:fresh` menghapus seluruh data pada database. Jangan jalankan pada database produksi.
+
+## Lisensi
+
+Project dikembangkan untuk kebutuhan pengelolaan operasional Determined Studio. Lisensi pihak framework Laravel menggunakan MIT License.
